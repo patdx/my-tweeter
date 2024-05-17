@@ -1,10 +1,9 @@
+import { memoize } from 'lodash-es';
 import {
   RegExpMatcher,
-  TextCensor,
   englishDataset,
   englishRecommendedTransformers,
 } from 'obscenity';
-import { memoize } from 'lodash-es';
 
 export const getObscenity = memoize(() => {
   const now = performance.now();
@@ -15,3 +14,7 @@ export const getObscenity = memoize(() => {
   console.log(`Obscenity matcher loaded in ${performance.now() - now}ms`);
   return matcher;
 });
+
+export function wait(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}

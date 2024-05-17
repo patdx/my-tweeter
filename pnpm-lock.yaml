@@ -8,6 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@hono/valibot-validator':
+        specifier: 0.2.5
+        version: 0.2.5(hono@4.3.7)(valibot@0.30.0)
+      '@hono/zod-validator':
+        specifier: 0.2.1
+        version: 0.2.1(hono@4.3.7)(zod@3.23.8)
       '@picocss/pico':
         specifier: 2.0.6
         version: 2.0.6
@@ -20,9 +26,15 @@ importers:
       '@remix-run/react':
         specifier: 2.9.2
         version: 2.9.2(react-dom@19.0.0-beta-26f2496093-20240514(react@19.0.0-beta-26f2496093-20240514))(react@19.0.0-beta-26f2496093-20240514)(typescript@5.4.5)
+      '@tanstack/react-query':
+        specifier: 5.36.2
+        version: 5.36.2(react@19.0.0-beta-26f2496093-20240514)
       drizzle-orm:
         specifier: 0.30.10
         version: 0.30.10(@cloudflare/workers-types@4.20240512.0)(react@19.0.0-beta-26f2496093-20240514)(types-react@19.0.0-beta.1)
+      hono:
+        specifier: 4.3.7
+        version: 4.3.7
       isbot:
         specifier: 5.1.6
         version: 5.1.6
@@ -32,6 +44,9 @@ importers:
       obscenity:
         specifier: 0.2.1
         version: 0.2.1
+      ofetch:
+        specifier: 1.3.4
+        version: 1.3.4
       react:
         specifier: beta
         version: 19.0.0-beta-26f2496093-20240514
@@ -41,13 +56,16 @@ importers:
       valibot:
         specifier: 0.30.0
         version: 0.30.0
+      zod:
+        specifier: 3.23.8
+        version: 3.23.8
     devDependencies:
       '@cloudflare/workers-types':
         specifier: 4.20240512.0
         version: 4.20240512.0
       '@remix-run/dev':
         specifier: 2.9.2
-        version: 2.9.2(@remix-run/react@2.9.2(react-dom@19.0.0-beta-26f2496093-20240514(react@19.0.0-beta-26f2496093-20240514))(react@19.0.0-beta-26f2496093-20240514)(typescript@5.4.5))(@types/node@20.12.12)(typescript@5.4.5)(vite@5.2.11(@types/node@20.12.12))(wrangler@3.56.0(@cloudflare/workers-types@4.20240512.0))
+        version: 2.9.2(@remix-run/react@2.9.2(react-dom@19.0.0-beta-26f2496093-20240514(react@19.0.0-beta-26f2496093-20240514))(react@19.0.0-beta-26f2496093-20240514)(typescript@5.4.5))(@types/node@20.12.12)(typescript@5.4.5)(vite@5.2.11(@types/node@20.12.12))(wrangler@3.57.0(@cloudflare/workers-types@4.20240512.0))
       '@types/lodash-es':
         specifier: 4.17.12
         version: 4.17.12
@@ -93,12 +111,15 @@ importers:
       vite:
         specifier: 5.2.11
         version: 5.2.11(@types/node@20.12.12)
+      vite-env-only:
+        specifier: 2.3.0
+        version: 2.3.0(vite@5.2.11(@types/node@20.12.12))
       vite-tsconfig-paths:
         specifier: 4.3.2
         version: 4.3.2(typescript@5.4.5)(vite@5.2.11(@types/node@20.12.12))
       wrangler:
-        specifier: 3.56.0
-        version: 3.56.0(@cloudflare/workers-types@4.20240512.0)
+        specifier: 3.57.0
+        version: 3.57.0(@cloudflare/workers-types@4.20240512.0)
 
 packages:
 
@@ -1022,6 +1043,18 @@ packages:
     resolution: {integrity: sha512-vBZP4NlzfOlerQTnba4aqZoMhE/a9HY7HRqoOPaETQcSQuWEIyZMHGfVu6w9wGtGK5fED5qRs2DteVCjOH60sA==}
     engines: {node: '>=14'}
 
+  '@hono/valibot-validator@0.2.5':
+    resolution: {integrity: sha512-3XWssyNMiMKfsbHHpS3ykUWbIJlfdVML+io7MOr0IQ8VFf9cHdijw8jEaYPh92B3MxfFByOUPe/nY52JRq3VuQ==}
+    peerDependencies:
+      hono: '>=3.9.0'
+      valibot: '>=0.13.1 <1'
+
+  '@hono/zod-validator@0.2.1':
+    resolution: {integrity: sha512-HFoxln7Q6JsE64qz2WBS28SD33UB2alp3aRKmcWnNLDzEL1BLsWfbdX6e1HIiUprHYTIXf5y7ax8eYidKUwyaA==}
+    peerDependencies:
+      hono: '>=3.9.0'
+      zod: ^3.19.1
+
   '@humanwhocodes/config-array@0.11.14':
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
     engines: {node: '>=10.10.0'}
@@ -1268,6 +1301,14 @@ packages:
     resolution: {integrity: sha512-TGGO7v7qOq4CYmSBVEYpI1Y5xDuCEnbVC5Vth8mOsW0gDSzxNrVERPc790IGHsrT2dQSimgMr9Ub3Y1Jci5/8w==}
     cpu: [x64]
     os: [win32]
+
+  '@tanstack/query-core@5.36.1':
+    resolution: {integrity: sha512-BteWYEPUcucEu3NBcDAgKuI4U25R9aPrHSP6YSf2NvaD2pSlIQTdqOfLRsxH9WdRYg7k0Uom35Uacb6nvbIMJg==}
+
+  '@tanstack/react-query@5.36.2':
+    resolution: {integrity: sha512-bHNa+5dead+j6SA8WVlEOPxcGfteVFgdyFTCFcxBgjnPf0fFpHUc7aNZBCnvmPXqy/BeQa9zTuU9ectb7i8ZXA==}
+    peerDependencies:
+      react: ^18.0.0
 
   '@types/acorn@4.0.6':
     resolution: {integrity: sha512-veQTnWP+1D/xbxVrPC3zHnCZRjSrKfhbMUlEA43iMZLu7EsnTtkJklIuwrCPbOi8YkvDQAiW05VQQFvvz9oieQ==}
@@ -1812,6 +1853,9 @@ packages:
   dequal@2.0.3:
     resolution: {integrity: sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==}
     engines: {node: '>=6'}
+
+  destr@2.0.3:
+    resolution: {integrity: sha512-2N3BOUU4gYMpTP24s5rF5iP7BDr7uNTCs4ozw3kf/eKfvWSIu93GEBi5m427YoyJoeOzQ5smuu4nNAPGb8idSQ==}
 
   destroy@1.2.0:
     resolution: {integrity: sha512-2sJGJTaXIIaR1w4iJSNoN0hnMY7Gpc/n8D4qSCJw8QqFWXf7cuAgnEHxBpweaVcPevC2l3KpjYCx3NypQQgaJg==}
@@ -2450,6 +2494,10 @@ packages:
 
   heap@0.2.7:
     resolution: {integrity: sha512-2bsegYkkHO+h/9MGbn6KWcE45cHZgPANo5LXF7EvWdT0yT2EguSVO1nDgU5c8+ZOPwp2vMNa7YFsJhVcDR9Sdg==}
+
+  hono@4.3.7:
+    resolution: {integrity: sha512-GXlsGnCAwGosu+COwYyYC8MwOY2L6Ihg9V1znYdMD8DHCJl+13Nk4o8dsBYJpae4oujjw24jBaITuYWVq2+V8Q==}
+    engines: {node: '>=16.0.0'}
 
   hosted-git-info@6.1.1:
     resolution: {integrity: sha512-r0EI+HBMcXadMrugk0GCQ+6BQV39PiWAZVfq7oIckeGiN7sjRGyQxPdft3nQekFTCQbYxLBH+/axZMeH8UX6+w==}
@@ -3106,6 +3154,9 @@ packages:
     resolution: {integrity: sha512-/jKZoMpw0F8GRwl4/eLROPA3cfcXtLApP0QzLmUT/HuPCZWyB7IY9ZrMeKw2O/nFIqPQB3PVM9aYm0F312AXDQ==}
     engines: {node: '>=10.5.0'}
 
+  node-fetch-native@1.6.4:
+    resolution: {integrity: sha512-IhOigYzAKHd244OC0JIMIUrjzctirCmPkaIfhDeGcEETWof5zKYUW7e7MYvChGWh/4CJeXEgsRyGzuF334rOOQ==}
+
   node-fetch@3.3.2:
     resolution: {integrity: sha512-dRB78srN/l6gqWulah9SrxeYnxeddIG30+GOqK/9OlLVyLg3HPnr6SqOWTWOXKRwC2eGYCkZ59NNuSgvSrpgOA==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
@@ -3183,6 +3234,9 @@ packages:
   obscenity@0.2.1:
     resolution: {integrity: sha512-84l2MZo41ZipfgYgYdRc3FNcktS/KCyun4LZSGgwkJD++BdMM4d+95fkKqWtxasSdfNKWHxdd6bswbEg0UtdXQ==}
     engines: {node: '>=14.0.0'}
+
+  ofetch@1.3.4:
+    resolution: {integrity: sha512-KLIET85ik3vhEfS+3fDlc/BAZiAp+43QEC/yCo5zkNoY2YaKvNkOaFr/6wCFgFH1kuYQM5pMNi0Tg8koiIemtw==}
 
   on-finished@2.4.1:
     resolution: {integrity: sha512-oVlzkg3ENAhCk2zdv7IJwd/QUD4z2RxRwpkcGY8psCVcCYZNq4wYnVWALHM+brtuJjePWiYF/ClmuDr8Ch5+kg==}
@@ -3977,6 +4031,11 @@ packages:
   vfile@5.3.7:
     resolution: {integrity: sha512-r7qlzkgErKjobAmyNIkkSpizsFPYiUPuJb5pNW1RB4JcYVZhs4lIbVqk8XPk033CV/1z8ss5pkax8SuhGpcG8g==}
 
+  vite-env-only@2.3.0:
+    resolution: {integrity: sha512-Q+7+G31twPpGPsY8Oy7vzESLUF79+HnLV5G1g5nxxgQUFvldT/q14n7ZDkkhvWJ46N+8HfPtCWifsPNHG7KHOQ==}
+    peerDependencies:
+      vite: '*'
+
   vite-node@1.6.0:
     resolution: {integrity: sha512-de6HJgzC+TFzOu0NTC4RAIsyf/DY/ibWDYQUcuEA84EMHhcefTUGkjFHKKEJhQN4A+6I0u++kr3l36ZF2d7XRw==}
     engines: {node: ^18.0.0 || >=20.0.0}
@@ -4065,8 +4124,8 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  wrangler@3.56.0:
-    resolution: {integrity: sha512-YEUscEmg6F7nVPoNX5uaQ/KT0ztkPLLN4XGOl9uwgLCTHsyilzeh4WvEg6lelDi60EIXhuzWLjf0jBFN4wbnZw==}
+  wrangler@3.57.0:
+    resolution: {integrity: sha512-izK3AZtlFoTq8N0EZjLOQ7hqwsjaXCc1cbNKuhsLJjDX1jB1YZBDPhIhtXL4VVzkJAcH+0Zw2gguOePFCHNaxw==}
     engines: {node: '>=16.17.0'}
     hasBin: true
     peerDependencies:
@@ -4767,6 +4826,16 @@ snapshots:
 
   '@fastify/busboy@2.1.1': {}
 
+  '@hono/valibot-validator@0.2.5(hono@4.3.7)(valibot@0.30.0)':
+    dependencies:
+      hono: 4.3.7
+      valibot: 0.30.0
+
+  '@hono/zod-validator@0.2.1(hono@4.3.7)(zod@3.23.8)':
+    dependencies:
+      hono: 4.3.7
+      zod: 3.23.8
+
   '@humanwhocodes/config-array@0.11.14':
     dependencies:
       '@humanwhocodes/object-schema': 2.0.3
@@ -4899,7 +4968,7 @@ snapshots:
     optionalDependencies:
       typescript: 5.4.5
 
-  '@remix-run/dev@2.9.2(@remix-run/react@2.9.2(react-dom@19.0.0-beta-26f2496093-20240514(react@19.0.0-beta-26f2496093-20240514))(react@19.0.0-beta-26f2496093-20240514)(typescript@5.4.5))(@types/node@20.12.12)(typescript@5.4.5)(vite@5.2.11(@types/node@20.12.12))(wrangler@3.56.0(@cloudflare/workers-types@4.20240512.0))':
+  '@remix-run/dev@2.9.2(@remix-run/react@2.9.2(react-dom@19.0.0-beta-26f2496093-20240514(react@19.0.0-beta-26f2496093-20240514))(react@19.0.0-beta-26f2496093-20240514)(typescript@5.4.5))(@types/node@20.12.12)(typescript@5.4.5)(vite@5.2.11(@types/node@20.12.12))(wrangler@3.57.0(@cloudflare/workers-types@4.20240512.0))':
     dependencies:
       '@babel/core': 7.24.5
       '@babel/generator': 7.24.5
@@ -4958,7 +5027,7 @@ snapshots:
     optionalDependencies:
       typescript: 5.4.5
       vite: 5.2.11(@types/node@20.12.12)
-      wrangler: 3.56.0(@cloudflare/workers-types@4.20240512.0)
+      wrangler: 3.57.0(@cloudflare/workers-types@4.20240512.0)
     transitivePeerDependencies:
       - '@types/node'
       - babel-plugin-macros
@@ -5087,6 +5156,13 @@ snapshots:
 
   '@rollup/rollup-win32-x64-msvc@4.17.2':
     optional: true
+
+  '@tanstack/query-core@5.36.1': {}
+
+  '@tanstack/react-query@5.36.2(react@19.0.0-beta-26f2496093-20240514)':
+    dependencies:
+      '@tanstack/query-core': 5.36.1
+      react: 19.0.0-beta-26f2496093-20240514
 
   '@types/acorn@4.0.6':
     dependencies:
@@ -5708,6 +5784,8 @@ snapshots:
   depd@2.0.0: {}
 
   dequal@2.0.3: {}
+
+  destr@2.0.3: {}
 
   destroy@1.2.0: {}
 
@@ -6617,6 +6695,8 @@ snapshots:
 
   heap@0.2.7: {}
 
+  hono@4.3.7: {}
+
   hosted-git-info@6.1.1:
     dependencies:
       lru-cache: 7.18.3
@@ -7402,6 +7482,8 @@ snapshots:
 
   node-domexception@1.0.0: {}
 
+  node-fetch-native@1.6.4: {}
+
   node-fetch@3.3.2:
     dependencies:
       data-uri-to-buffer: 4.0.1
@@ -7490,6 +7572,12 @@ snapshots:
       es-object-atoms: 1.0.0
 
   obscenity@0.2.1: {}
+
+  ofetch@1.3.4:
+    dependencies:
+      destr: 2.0.3
+      node-fetch-native: 1.6.4
+      ufo: 1.5.3
 
   on-finished@2.4.1:
     dependencies:
@@ -8395,6 +8483,17 @@ snapshots:
       unist-util-stringify-position: 3.0.3
       vfile-message: 3.1.4
 
+  vite-env-only@2.3.0(vite@5.2.11(@types/node@20.12.12)):
+    dependencies:
+      '@babel/core': 7.24.5
+      '@babel/generator': 7.24.5
+      '@babel/parser': 7.24.5
+      '@babel/traverse': 7.24.5
+      '@babel/types': 7.24.5
+      vite: 5.2.11(@types/node@20.12.12)
+    transitivePeerDependencies:
+      - supports-color
+
   vite-node@1.6.0(@types/node@20.12.12):
     dependencies:
       cac: 6.7.14
@@ -8502,7 +8601,7 @@ snapshots:
       '@cloudflare/workerd-linux-arm64': 1.20240512.0
       '@cloudflare/workerd-windows-64': 1.20240512.0
 
-  wrangler@3.56.0(@cloudflare/workers-types@4.20240512.0):
+  wrangler@3.57.0(@cloudflare/workers-types@4.20240512.0):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.3.2
       '@esbuild-plugins/node-globals-polyfill': 0.2.3(esbuild@0.17.19)

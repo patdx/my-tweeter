@@ -1,4 +1,5 @@
 import {
+  Link,
   Links,
   Meta,
   Outlet,
@@ -6,6 +7,10 @@ import {
   ScrollRestoration,
 } from '@remix-run/react';
 import '@picocss/pico/css/pico.classless.css';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+// Create a client
+const queryClient = new QueryClient();
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -17,15 +22,20 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <main style={{ maxWidth: '512px' }}>
-          <section>{children}</section>
-          <section style={{ textAlign: 'center' }}>
-            <a href='https://github.com/patdx'>@patdx</a>
-            {' | '}
-            <a href='https://github.com/patdx/my-tweeter'>Github</a>
-          </section>
-          <div className='grid'></div>
-        </main>
+        <QueryClientProvider client={queryClient}>
+          <main style={{ maxWidth: '512px' }}>
+            <h1>
+              <Link to='/'>My Tweeter</Link>
+            </h1>
+            <section>{children}</section>
+            <section style={{ textAlign: 'center' }}>
+              <a href='https://github.com/patdx'>@patdx</a>
+              {' | '}
+              <a href='https://github.com/patdx/my-tweeter'>Github</a>
+            </section>
+            <div className='grid'></div>
+          </main>
+        </QueryClientProvider>
 
         <ScrollRestoration />
         <Scripts />
