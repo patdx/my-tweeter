@@ -1,31 +1,33 @@
-# Welcome to Remix + Vite!
+# My Tweeter
 
-📖 See the [Remix docs](https://remix.run/docs) and the [Remix Vite docs](https://remix.run/docs/en/main/guides/vite) for details on supported features.
+This is just a mini experiment to put a simple Twitter clone on Cloudflare Pages.
 
-## Typegen
-
-Generate types for your Cloudflare bindings in `wrangler.toml`:
-
-```sh
-npm run typegen
-```
-
-You will need to rerun typegen whenever you make changes to `wrangler.toml`.
+https://my-tweeter.pages.dev/
 
 ## Development
 
 Run the Vite dev server:
 
 ```sh
-npm run dev
+pnpm run dev
 ```
 
 To run Wrangler:
 
 ```sh
-npm run build
-npm run start
+pnpm run build
+pnpm run start
 ```
+
+## Typegen
+
+Generate types for your Cloudflare bindings in `wrangler.toml`:
+
+```sh
+pnpm run typegen
+```
+
+You will need to rerun typegen whenever you make changes to `wrangler.toml`.
 
 ## Deployment
 
@@ -36,13 +38,13 @@ npm run start
 First, build your app for production:
 
 ```sh
-npm run build
+pnpm run build
 ```
 
 Then, deploy your app to Cloudflare Pages:
 
 ```sh
-npm run deploy
+pnpm run deploy
 ```
 
 [bindings]: https://developers.cloudflare.com/pages/functions/bindings/
