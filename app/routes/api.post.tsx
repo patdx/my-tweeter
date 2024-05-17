@@ -1,7 +1,7 @@
 import { unstable_defineAction } from '@remix-run/cloudflare';
 import { Form, useSubmit } from '@remix-run/react';
 import { eq } from 'drizzle-orm';
-import type { Ref } from 'react';
+import { useImperativeHandle, useRef, type Ref } from 'react';
 import * as v from 'valibot';
 import { createDrizzle } from '~/drizzle/db';
 import { post } from '~/drizzle/schema';
@@ -75,25 +75,40 @@ export const action = unstable_defineAction(async ({ request, context }) => {
   return { id: postId };
 });
 
+export type PostFormHandle = {
+  reset: () => void;
+};
+
 export function PostForm(props: {
   /** id of post to reply to */
   reply?: string;
-  ref?: Ref<HTMLFormElement>;
+  ref?: Ref<PostFormHandle>;
 }) {
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
   const submit = useSubmit();
+
+  useImperativeHandle(props.ref, () => ({
+    reset() {
+      if (textareaRef.current) {
+        textareaRef.current.value = '';
+      }
+    },
+  }));
 
   // https://github.com/remix-run/remix/discussions/869#discussioncomment-1831610
   // action='/api/post'
   return (
-    <Form method='post' ref={props.ref}>
+    <Form method='post'>
       {props.reply && <input type='hidden' name='reply' value={props.reply} />}
       <label>
         Username
-        <input type='text' name='user' defaultValue='remix' />
+        <input type='text' name='user' autoCapitalize='off' />
       </label>
       <label>
         Post
         <textarea
+          ref={textareaRef}
           style={{ fieldSizing: 'content', minHeight: '5em' } as any}
           name='text'
           placeholder='Write a tweeter...'
