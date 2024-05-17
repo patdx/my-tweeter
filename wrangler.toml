@@ -1,0 +1,11 @@
+name = "my-tweeter"
+pages_build_output_dir = "./build/client"
+compatibility_date = "2024-05-12"
+
+[[ d1_databases ]]
+binding = "DB" # i.e. if you set this to "DB", it will be available in your Worker at `env.DB`
+database_name = "DB"
+database_id = "a05c8944-2ee5-4cfe-9f3b-00e186d5aa97"
+# preview_database_id = "<UUID>"
+# migrations_table = "<d1_migrations>" # Customize this value to change your applied migrations table name
+migrations_dir = "drizzle" # Customize this value to rename the `migrations` folder
