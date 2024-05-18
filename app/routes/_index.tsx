@@ -3,12 +3,13 @@ import {
   type MetaFunction,
 } from '@remix-run/cloudflare';
 import { useActionData, useLoaderData } from '@remix-run/react';
-import { desc } from 'drizzle-orm';
+import { desc, eq, getTableColumns, sql } from 'drizzle-orm';
 import { useEffect, useRef } from 'react';
 import { Post } from '~/components/post';
 import { createDrizzle } from '~/drizzle/db';
 import { post } from '~/drizzle/schema';
 import { PostForm, type PostFormHandle, action } from './api.post';
+import { alias } from 'drizzle-orm/sqlite-core';
 
 export const meta: MetaFunction = () => {
   return [
@@ -21,12 +22,25 @@ export const meta: MetaFunction = () => {
 };
 
 export const loader = unstable_defineLoader(async ({ context }) => {
-  const posts = await createDrizzle(context.cloudflare.env.DB)
-    .select()
+  // const mainPost = alias(post, 'mainPost');
+  const otherPost = alias(post, 'otherPost');
+
+  const drizzle = createDrizzle(context.cloudflare.env.DB);
+
+  const posts = await drizzle
+    .select({
+      ...getTableColumns(post),
+      // need to manually cast to a different column than "user" to avoid the
+      // overwritten casting bug with Cloudflare D1
+      reply_to_user: sql<string | null>`${otherPost.user}`.as('reply_to_userx'),
+    })
     .from(post)
     .orderBy(desc(post.created_at))
+    .leftJoin(otherPost, eq(post.reply_to_id, otherPost.id))
     .limit(100)
     .all();
+
+  console.log('posts', posts);
 
   return { posts };
 });

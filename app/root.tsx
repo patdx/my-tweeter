@@ -6,7 +6,9 @@ import {
   Scripts,
   ScrollRestoration,
 } from '@remix-run/react';
-import '@picocss/pico/css/pico.classless.css';
+
+import '@picocss/pico/css/pico.css';
+import './root.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 // Create a client
@@ -23,7 +25,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <QueryClientProvider client={queryClient}>
-          <main style={{ maxWidth: '512px' }}>
+          <main className='container' style={{ maxWidth: '512px' }}>
             <h1>
               <Link to='/'>My Tweeter</Link>
             </h1>
