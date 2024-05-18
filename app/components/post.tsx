@@ -11,7 +11,7 @@ export function Post({ post, small }: { post: Post; small?: boolean }) {
     <article key={post.id} style={small ? { zoom: 0.8 } : undefined}>
       {post.reply_to_user && (
         <header>
-          Replying to <UserLink user={post.user} />
+          Replying to <UserLink user={post.reply_to_user} />
         </header>
       )}
       {post.text}
