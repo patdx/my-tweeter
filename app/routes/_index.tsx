@@ -10,6 +10,7 @@ import { createDrizzle } from '~/drizzle/db';
 import { post } from '~/drizzle/schema';
 import { PostForm, type PostFormHandle, action } from './api.post';
 import { alias } from 'drizzle-orm/sqlite-core';
+import { getPosts } from '~/utils.server';
 
 export const meta: MetaFunction = () => {
   return [
@@ -27,20 +28,7 @@ export const loader = unstable_defineLoader(async ({ context }) => {
 
   const drizzle = createDrizzle(context.cloudflare.env.DB);
 
-  const posts = await drizzle
-    .select({
-      ...getTableColumns(post),
-      // need to manually cast to a different column than "user" to avoid the
-      // overwritten casting bug with Cloudflare D1
-      reply_to_user: sql<string | null>`${otherPost.user}`.as('reply_to_userx'),
-    })
-    .from(post)
-    .orderBy(desc(post.created_at))
-    .leftJoin(otherPost, eq(post.reply_to_id, otherPost.id))
-    .limit(100)
-    .all();
-
-  console.log('posts', posts);
+  const posts = await getPosts(drizzle);
 
   return { posts };
 });

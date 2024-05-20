@@ -7,3 +7,5 @@ export function createDrizzle(db: D1Database) {
     logger: true,
   });
 }
+
+export type Drizzle = ReturnType<typeof createDrizzle>;

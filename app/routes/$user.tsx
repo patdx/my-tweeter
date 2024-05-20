@@ -1,21 +1,16 @@
 import { unstable_defineLoader } from '@remix-run/cloudflare';
 import { Link, useLoaderData, useParams } from '@remix-run/react';
-import { desc, eq } from 'drizzle-orm';
-import { createDrizzle } from '~/drizzle/db';
-import { post } from '~/drizzle/schema';
 import * as v from 'valibot';
 import { Post } from '~/components/post';
+import { createDrizzle } from '~/drizzle/db';
+import { getPosts } from '~/utils.server';
 
 export const loader = unstable_defineLoader(async ({ context, params }) => {
   const { user } = v.parse(v.object({ user: v.string() }), params);
 
-  const posts = await createDrizzle(context.cloudflare.env.DB)
-    .select()
-    .from(post)
-    .orderBy(desc(post.created_at))
-    .where(eq(post.user, user))
-    .limit(100)
-    .all();
+  const drizzle = createDrizzle(context.cloudflare.env.DB);
+
+  const posts = await getPosts(drizzle, { userId: user });
 
   return { posts };
 });
