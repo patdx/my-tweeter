@@ -36,6 +36,13 @@ export function getPosts(
       // need to manually cast to a different column than "user" to avoid the
       // overwritten casting bug with Cloudflare D1
       reply_to_user: sql<string | null>`${otherPost.user}`.as('reply_to_user'),
+      // TODO: should be a more efficient way to do this
+      // TODO: officially this would be more like comments after the current comment
+      thread_size: sql<
+        number | null
+      >`(select count(*) from post post2 where post2.thread_id = post.thread_id and post2.id != post.id)`.as(
+        'thread_size'
+      ),
     })
     .from(post)
     .orderBy(postId ? asc(post.created_at) : desc(post.created_at))

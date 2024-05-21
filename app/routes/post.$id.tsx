@@ -28,7 +28,7 @@ export default function PostPage() {
       {data.posts.map((post) => {
         return (
           <Fragment key={post.id}>
-            <Post post={post} small={post.id !== id} />
+            <Post post={post} small={post.id !== id} showThreadSize={false} />
             {post.id === id && (
               <article>
                 <h4>Reply to post</h4>
