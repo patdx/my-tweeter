@@ -33,7 +33,11 @@ export function Post({
         <Link to={`/post/${post.id}`}>{post.created_at}</Link>
         <Link to={`/post/${post.id}`}>
           <ChatIcon />
-          {showThreadSize ? (thread_size > 1 ? ` ${thread_size}` : null) : null}
+          {showThreadSize
+            ? thread_size >= 1
+              ? ` ${thread_size}`
+              : null
+            : null}
         </Link>
       </footer>
     </article>
